@@ -1,0 +1,12 @@
+[
+  {
+    "label": "Debug src/main.py",
+    "adapter": "Debugpy",
+    "request": "launch",
+    "program": "${ZED_WORKTREE_ROOT}/src/main.py",
+    "cwd": "${ZED_WORKTREE_ROOT}",
+    "python": "${ZED_WORKTREE_ROOT}/.venv/bin/python",
+    "console": "integratedTerminal",
+    "justMyCode": false
+  }
+]
