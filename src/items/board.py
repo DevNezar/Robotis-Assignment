@@ -21,7 +21,6 @@ class Board:
             (100, 210, 255),  # Agent  - sky blue
             (200, 60, 80),  # Obstacle - muted red
         ),
-        obstacles: int = 3,
     ):
         # Invlid values
         if (width < 1 or height < 1) or (screen_size[0] < 1 or screen_size[1] < 1):
