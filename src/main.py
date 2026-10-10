@@ -1,3 +1,7 @@
+import os
+
+os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "yes"
+
 from typing import cast
 
 import pygame as pg
