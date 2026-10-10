@@ -1,12 +1,15 @@
 import os
 
+from src.AI.path_finding import PathFinder
+from src.items.cell import Cell
+
 os.environ["PYGAME_HIDE_SUPPORT_PROMPT"] = "yes"
 
 from typing import cast
 
 import pygame as pg
 
-from items.board import Board
+from src.items.board import Board
 
 
 def main() -> None:
@@ -17,6 +20,17 @@ def main() -> None:
     running: bool = True
     board = Board()
 
+    HARDCODED_BOARD: list[list[int]] = [
+        [Cell.AGENT, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY],
+        [Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY],
+        [Cell.EMPTY, Cell.EMPTY, Cell.TARGET, Cell.OBSTACLES, Cell.EMPTY],
+        [Cell.EMPTY, Cell.OBSTACLES, Cell.EMPTY, Cell.EMPTY, Cell.EMPTY],
+        [Cell.EMPTY, Cell.EMPTY, Cell.EMPTY, Cell.OBSTACLES, Cell.TARGET],
+    ]
+
+    board.setBoard(HARDCODED_BOARD)
+
+    path_finder = PathFinder(board)
     while running:
         # When exit even -> exit
         for event in pg.event.get():
@@ -25,9 +39,11 @@ def main() -> None:
             if event.type == pg.KEYDOWN:
                 key = cast(int, event.key)
                 if key == pg.K_r:
-                    board.reset_board()
+                    return main()
                 if key == pg.K_ESCAPE:
                     running = False
+                if key == pg.K_SPACE:
+                    path_finder.move()
 
         # Background
         _ = screen.fill("purple")
